@@ -78,8 +78,28 @@ class LinkedList
         {
            System.out.println(temp.getData()); 
            temp = temp.getNext();    
+        }   
+    }
+    
+    //function to search an element from the linked list..
+    public void Search(String data)
+    {
+        Node temp = this.head;
+        while(temp!=null)
+        {
+            if(temp.getData()==data)
+            {
+                System.out.println("Word found which is "+temp.getData());
+                
+                break;
+            }
+            
+            temp = temp.getNext();
         }
-        
+        if(temp==null)
+        {
+          System.out.println("Word not found");    
+        }
         
     }
 }
@@ -96,7 +116,8 @@ class Main
         list.addAtEnd("Saarthak");
         
         //list.addAtBeg("Riya");
-        list.display();
+        list.display();  //will display all the elements present in the linked list..
+        list.Search("Jasjeet"); //will search for the data name "Jasjeet"..
         System.out.println("done");
     }
 }
