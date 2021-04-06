@@ -85,9 +85,9 @@ class LinkedList
     public void Search(String data)
     {
         Node temp = this.head;
-        while(temp!=null)
+        while(temp!=null)  //traverse in the linked list..
         {
-            if(temp.getData()==data)
+            if(temp.getData()==data)  //if it is equal..
             {
                 System.out.println("Word found which is "+temp.getData());
                 
