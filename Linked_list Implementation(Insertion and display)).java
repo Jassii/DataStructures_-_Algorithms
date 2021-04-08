@@ -100,8 +100,48 @@ class LinkedList
         {
           System.out.println("Word not found");    
         }
-        
     }
+    
+    //function for inserting the data at any place in the linked list...
+    public void insert(String data,String dataBefore)
+    {
+        Node node = new Node(data);  //creating a node with the new data..
+        //checking if the list is empty or not..
+        if(this.head==null)
+        {
+            this.head = this.tail = node;
+        }
+        
+        else
+        {
+             Node temp = this.head;  //this will be used for traversing..
+        
+             while(temp!=null)
+             {
+                  if(temp.getData().equals(dataBefore))  //checking if the dataBefore is there or not..
+                  {
+                      
+                      //if yes then making a connection b/w the node containing dataBefore and the new node containing data..
+                      Node nodeBefore = temp;
+                      node.setNext(nodeBefore.getNext());
+                      nodeBefore.setNext(node);
+                      if(node.getNext()==null)  //if it is inserted at the last..
+                      {
+                          this.tail = node;
+                      }
+                       break;
+                  }
+                   temp = temp.getNext();  //so that the temp reaches the end..
+              }
+             if(temp==null)  //if the dataBefore is not found in the Linked List..
+             {
+                  System.out.println("Value not found..");
+             } 
+        }
+    }
+    
+   //function for deleting the data from the linked list...
+    public void delete()
 }
 
 class Main
