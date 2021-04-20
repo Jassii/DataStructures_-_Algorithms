@@ -31,7 +31,7 @@ class Stack {
 	    int i;
 	    for(i=top;i>=0;i--)
 	    {
-	        System.out.print(arr[i]+" ");
+	        System.out.println(arr[i]+" ");
 	    }
 	}
 	public void topElement()
@@ -46,6 +46,21 @@ class Stack {
 	       System.out.println("Topmost element is "+arr[top]);   
 	    }
 	}
+	
+	//Inorder to remove the top element or pop operation..
+	public void pop()
+	{
+	    //check if the stack is empty or not...
+	    if(top==-1) //no element in the stack..
+	    {
+	        System.out.println("Stack is empty");
+	        System.exit(0);
+	    }
+	    int temp = arr[top]; //retrieving the top element..
+	    top--;
+	    System.out.println(temp+" element is removed..");
+	}
+	
 	
 }
 class Main {
