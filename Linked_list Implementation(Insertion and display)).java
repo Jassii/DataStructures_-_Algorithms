@@ -76,8 +76,10 @@ class LinkedList
         }
         else
         {
-            this.head.setNext(node);
-            this.head = node;
+            // If the list is not empty, add the element at the beginning
+	    node.setNext(this.head);
+	    // Make the new node as the head
+	    this.head = node;
         }
     }
     
