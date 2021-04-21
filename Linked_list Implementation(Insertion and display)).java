@@ -35,6 +35,15 @@ class LinkedList
     private Node head; //creating the head of type Node class..
     private Node tail; //creating the tail of type Node class..
     
+    public Node getHead()
+    {
+		return this.head;
+	}
+	public Node getTail()
+    {
+		return this.tail;
+	}
+    
     //create a function inside that new node..to be inserted..
     public void addAtEnd(String data) //node to be inserted at the end..
     {
@@ -48,8 +57,10 @@ class LinkedList
         }
         else
         {
-            this.tail.setNext(node);//assigning the next value of earlier last to the new node..(Pointing the new node)
-            this.tail = node; //making the toil point to the new node.. 
+            node.setNext(this.tail.getNext());  //last node will point to the null value..
+            this.tail.setNext(node);  //earlier tail will point to the new node..
+            
+            this.tail = node; //node will be the tail node..
         }
         //System.out.println(node.getData());
         //System.out.println(node.getNext());
