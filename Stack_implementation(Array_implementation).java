@@ -37,7 +37,7 @@ class Stack {
 	public void topElement()
 	{
 	    //check if the stack is empty or not..
-	    if(top>=maxSize)
+	    if(top==-1)
 	    {
 	        System.out.println("Stack is empty");
 	    }
@@ -45,6 +45,20 @@ class Stack {
 	    {
 	       System.out.println("Topmost element is "+arr[top]);   
 	    }
+	}
+	
+	public void lastElement() //inorder to access the last element from the stack....
+	{
+		//check if the stack is empty or not..
+		if(top==-1)
+		{
+			System.out.println("Stack is empty");
+		}
+		else
+		{
+			System.out.println("Last element is: "+arr[0]);
+		}
+		
 	}
 	
 	//Inorder to remove the top element or pop operation..
