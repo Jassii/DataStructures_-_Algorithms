@@ -25,7 +25,7 @@ class BinaryTree
         root=null;
     }
     
-    //The below function tells about the **Breadth First Traversal**..
+    //The below function tells about the **Breadth First Traversal**.
     
    /* 
     //function to display the elements present in the Binary Tree..
