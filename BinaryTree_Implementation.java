@@ -24,77 +24,90 @@ class BinaryTree
     {
         root=null;
     }
-    
-    //The below function tells about the **Breadth First Traversal**.
-    
-   /* 
-    //function to display the elements present in the Binary Tree..
-    public void printBFS()  //level order traversal..
+    //understanding about the traversal..(-------**Using Recursion**---------)
+    //preorder traversal...
+    public void preTraversal(Node root)  //(root-->left-->right)..
     {
-        //inorder to print the element first calculate the height of the binary tree..
-        int h = height(root);
-        int i;
-        //now traversing till the end of the BT.
-        for(i=1;i<=h;i++)
+        if(root==null)
         {
-            printTree(root,i); //function which will display the data at each node..at respective heights..
+            //System.out.println("Binary Tree is empty");
+            return;
         }
-    } 
-    void printTree(Node root,int level)
+        System.out.print(root.data+" ");
+        preTraversal(root.left);
+        preTraversal(root.right);
+    }
+    
+    //postorder traversal...
+    public void posTraversal(Node root) //(left-->right-->root)..
     {
         if(root==null)
         {
             return;
         }
-        if(level==1)
-        {
-            System.out.println(root.data); //printing the data at the respective node..
-        }
-        else if(level>1)
-        {
-            printTree(root.left,level-1); //will decrease the level by one and going down the tree in left side...
-            printTree(root.right,level-1); //will decrease the level by one and going down the tree in right side...
-        }
+        posTraversal(root.left);
+        posTraversal(root.right);
+        System.out.print(root.data+" ");
     }
-    int height(Node root) //function to calculate the height of BT.
-    {
-        if(root==null)//BT is empty.
-        {
-            return 0;
-        }
-        else
-        {
-            int lheight = height(root.left); //height of the left side..
-            int rheight = height(root.right); //height of the right side..
-            if(lheight>rheight)
-            {
-                return (lheight+1);  //we are adding 1 because of the root node..
-            }
-            else
-            {
-                return (rheight+1);  //we are adding 1 because of the root node..
-            }
-        }
-    }*/
     
+    //inorder traversal...
+    public void inTraversal(Node root)   //(left-->root-->right)..
+    {
+        if(root==null)
+        {
+            return;
+        }
+        inTraversal(root.left);
+        System.out.print(root.data+" ");
+        inTraversal(root.right);
+    }
+    
+    //Inorder tree traversal without recursion..
+    public void InWRec()
+    {
+        if(root==null)
+        {
+            return;
+        }
+        
+       Stack<Node> stack = new Stack<Node>(); //creating a stack..
+       Node current = root;
+       //traverse the tree..
+       while(current!=null || stack.isEmpty()==false)  //current is not null and stack is not empty..
+       {
+           while(current!=null)
+           {
+              stack.push(current); //push the data untill it is null..
+              current = current.left;    
+           }
+           current = stack.pop(); //pop the topmost item..
+           System.out.print(current.data+" ");
+           current = current.right;
+       }
+    }
 }
-
-
 
 class Main//main class..
 {
     public static void main(String[]args)  //main method..
     {
         Scanner sc = new Scanner(System.in);
-        BinaryTree bt = new BinaryTree();//object of the BinaryTree.
+        BinaryTree tree = new BinaryTree();  //creating an object.
+        tree.root = new Node(1);
+        tree.root.left = new Node(2);
+        tree.root.right = new Node(3);
+        tree.root.left.left = new Node(4);
+        tree.root.left.right = new Node(5);
+        tree.root.right.left = new Node(6);
+        tree.root.right.right = new Node(7);
+        System.out.println("PreOrder Traversal of the tree is ");
+        tree.preTraversal(tree.root);
+        System.out.println("\nPostOrder Traversal of the tree is ");
+        tree.posTraversal(tree.root);
+        System.out.println("\nInOrder Traversal of the tree is ");
+        tree.inTraversal(tree.root);
         
-        //now creating a root node of data "1"..
-        bt.root = new Node(1);
-        //making left and right child nodes..("2" and "3")..    
-        bt.root.left=new Node(2); //creating new node as a child of root node..
-        bt.root.right=new Node(3); //creating new node as a child of root node..
-        //making child of the left node..("4")
-        bt.root.left.left = new Node(4); 
-        bt.printBFS(); //function called to print the elements present in the BT..
+        tree.InWRec();
+        
     }
 }
