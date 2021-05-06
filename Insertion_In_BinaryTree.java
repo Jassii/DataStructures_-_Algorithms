@@ -76,7 +76,7 @@ class BinaryTree
         }
     }
     //fucntion for **deleting** any node from the BinaryTree..
-   /* public void delete(int data)
+   public void delete(int data)
     {
         Node temp = root;
         if(temp==null)  //when the binary tree is itself an emptytree..
@@ -97,16 +97,20 @@ class BinaryTree
             }
         }
         
+        //now we will traverse the BinaryTree inorder to get the node to be deleted..
         Queue<Node> q = new LinkedList<Node>();
         q.add(temp);
-        Node keyNode = null;  //this will store the node to be deleted..
-        while(!q.isEmpty())
+        
+        Node keyNode = null;  //this will store the (node to be deleted)..
+        
+        while(!q.isEmpty())//till we have traversed the end..
         {
             temp = q.peek();
             q.remove();
             if(temp.data==data)
             {
                 keyNode = temp;
+                //return;
             }
             if(temp.left!=null)
             {
@@ -117,17 +121,23 @@ class BinaryTree
                 q.add(temp.right);
             }
         }
-        if(keyNode!=null)  //when we have found the node which has to be deleted.
+        //this (while) will tell us that the node to be deleted is stored in (keyNode) Node..
+        
+        if(keyNode!=null)  //yes that it ahs found the node which has to be deleted..
         {
             int x = temp.data;  //data of the last node..
-            deleteDeepest(root,temp);
-            keyNode.data = data;
+            keyNode.data = x; //assigning data of the last node to the node which was to be deleted
+            deleteDeepest(root,temp);  //function called to remove the deepest and rightmost node..of BT..
+            
         }
     }
+    
     public void deleteDeepest(Node root,Node last)
     {
+        //traverse till the last node..
         Queue<Node> q = new LinkedList<Node>();
         q.add(root);
+        
         Node temp = root;
         while(!q.isEmpty())
         {
@@ -143,6 +153,7 @@ class BinaryTree
                 if(temp.right==last)
                 {
                     temp.right=null;
+                    return;
                 }
                 else
                 {
@@ -154,6 +165,7 @@ class BinaryTree
                  if(temp.left==last)
                  {
                      temp.left=null;
+                     return;
                  }
                  else
                  {
@@ -161,7 +173,76 @@ class BinaryTree
                  }
              }
         }
-    }*/
+    }//end of deleteDeepest function..
+    
+    //function to calculate the size of the tree..(number of nodes present)..
+    public int size(Node root)  
+    {
+        if(root==null)
+        {
+            //System.out.println("Size of subtree is zero as Binary Tree is empty.");
+            return 0;
+        }
+        else
+        {
+            int lh = size(root.left);  //calculating the height of left subtree..
+            int rh = size(root.right); //calculating the height of right subtree..
+            int tree_size = lh + 1 + rh;  //+1 for the root node..
+            return tree_size;
+        }
+    }
+    
+    //function to find the node having the maximum value or data..
+    public int max(Node root)
+    {
+        if(root==null)
+        {
+           // System.out.println("Empty BT");
+            return Integer.MIN_VALUE;
+        }
+        if(root.left==null && root.right==null)
+        {
+            //System.out.println("Node having max data is root node with : "+root.data+" value..");
+            return root.data;
+        }
+        int res = root.data; //data at the root node...
+        
+        int lmax = max(root.left);
+        int rmax = max(root.right);
+        if(lmax>res)
+        {
+            res = lmax;
+        }
+        if(rmax>res)
+        {
+            res = rmax;
+        }
+        return res;
+    }
+    
+    //function to find the node having the minimum value or data..
+    public int min(Node root)
+    {
+        if(root==null)
+        {
+            return Integer.MAX_VALUE;
+        }
+        
+        int res = root.data;
+        
+        int lmin = min(root.left);
+        int rmin = min(root.right);
+        if(lmin<res)
+        {
+            res = lmin;
+        }
+        if(rmin<res)
+        {
+            res = rmin;
+        }
+        return res;
+    }
+    
 }
 class Main
 {
@@ -169,20 +250,30 @@ class Main
     {
         Scanner sc = new Scanner(System.in);
         BinaryTree tree = new BinaryTree(); //creating an object of BinaryTree..
-        tree.root = new Node(1);
-        tree.root.left = new Node(2);
-        tree.root.right = new Node(3);
+        tree.root = new Node(13);
+        tree.root.left = new Node(12);
+        tree.root.right = new Node(10);
         tree.root.left.left = new Node(4);
-        tree.root.right.left = new Node(6);
-        tree.root.right.right = new Node(7);
+        tree.root.right.left = new Node(16);
+        tree.root.right.right = new Node(9);
         System.out.println("Inorder traversal before the insertion ");
         tree.inorderT(tree.root);
-        tree.insert(5);
+        tree.insert(19);
         System.out.println("\nInorder traversal after the insertion ");
         tree.inorderT(tree.root);
         System.out.println("\nInorder traversal after the deletion ");
         //deleting function..
-        //tree.delete(5);
-        //tree.inorderT(tree.root);
+        tree.delete(12);
+        tree.inorderT(tree.root);
+        
+        int s = tree.size(tree.root);
+        
+        System.out.println("\nSize of subtree is "+s);
+        
+        int max = tree.max(tree.root);
+        System.out.println("Node having max data is "+max);
+        
+        int min = tree.min(tree.root);
+        System.out.println("Node having min data is "+min);
     }
 }
