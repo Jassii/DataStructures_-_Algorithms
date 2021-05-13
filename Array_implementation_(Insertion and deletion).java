@@ -31,7 +31,7 @@ class Main
             System.out.print(A[i]+" ");
         }
         
-        //deleting an element from an array..
+        //deleting an element from an array
         System.out.println("Now it's time for deletion");
         int index = sc.nextInt();//index from which value to be removed..
         for(i=index-1;i<A.length-1;i++)  //shifting the value to the left side...
