@@ -103,6 +103,42 @@ class BinaryTree
         //after this while loop...(Tree map will store the heights and data of the respective nodes from the top view)
         System.out.println(tm.values()); //inorder to get the values of the map..(.values() function is used..)
     }
+    //function to print the left view of the binary tree..
+    void leftView()
+    {
+        Node temp = root;
+        if(temp==null)
+        {
+            return;
+        }
+        
+        TreeMap<Integer,Integer> m = new TreeMap<>();  //created a tree map..which will store the (height,data)..
+        Queue<Node> q = new LinkedList<>();//it will store the data of each node of BinaryTree..
+        q.add(temp);
+        //traverse till the end..
+        while(!q.isEmpty())
+        {
+            temp = q.peek();
+            q.remove();
+            int h = temp.height;
+            if(m.get(h)==null)  //for the very first node..
+            {
+                m.put(h,temp.data);
+            }
+            if(temp.left!=null)
+            {
+                temp.left.height = h+1;
+                q.add(temp.left);
+            }
+            if(temp.right!=null)
+            {
+                temp.right.height = h+1;
+                q.add(temp.right);
+            }
+        }
+        System.out.println(m.values()); //this will print the data of each node visible from the left..
+    }
+    
     //for inorder traversal..
     void inorder()
     {
