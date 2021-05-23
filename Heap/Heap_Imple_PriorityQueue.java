@@ -26,8 +26,8 @@ class Heap
         
         for(i=0;i<arr.length-1;i++)
         {
+             System.out.print(P.peek()+" "); //first see the peek value then remove it...
             P.poll();  //removing the value from the PrioriyQueue
-            System.out.print(P.peek()+" ");
         }
     }
     public void maxHeap(int arr[])
