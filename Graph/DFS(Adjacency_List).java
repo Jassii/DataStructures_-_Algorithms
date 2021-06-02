@@ -1,4 +1,6 @@
-import java.util.*;
+/*----------------------------------------------------------------CODING SIMPLIFIED METHOD-----------------------------------------------------------------*/
+
+/*import java.util.*;
 class Graph
 {
     ArrayList<ArrayList<Integer>> list; //adjacency list..
@@ -67,5 +69,82 @@ class Main
         G.addEdge(4, 6);
         
         G.dfs(0); //here I am telling what is my starting index of the graph... 
+    }
+}*/
+
+/*-------------------------------------------------------------GEEKS FOR GEEKS METHOD-------------------------------------------------------------*/
+
+import java.util.*;
+class Graph
+{
+    private int V;  //number of vertices..
+    List<List<Integer>> list;
+    public Graph(int v)
+    {
+        V = v;
+        list = new ArrayList<>();
+        int i;
+        for(i=0;i<v;i++)
+        {
+            list.add(i,new ArrayList<>());
+        }
+    }
+    
+    public void addEdge(int u, int v)
+    {
+        list.get(u).add(v);
+        list.get(v).add(u);
+    }
+    
+    public void dfs(int start)
+    {
+        boolean visited[] = new boolean[V];
+        utilDfs(start,visited);
+    }
+    
+    public void utilDfs(int v,boolean visited[])
+    {
+        visited[v] = true;
+        System.out.print(v+" ");
+        
+        //not checking its list..
+       // List<Integer> l = list.get(v);  //this returns the list of the specific index..
+        /*Iterator<Integer> i = list.get(v).listIterator();
+        while (i.hasNext())
+        {
+            int n = i.next();
+            if (!visited[n])
+                utilDfs(n, visited);
+        }*/
+        
+        List<Integer> l = list.get(v);
+        int i;
+        for(i=0;i<l.size();i++)
+        {
+            int k = l.get(i);
+            if(!visited[k])
+            {
+                utilDfs(k,visited);
+            }
+        }
+        
+    }
+    
+}
+class Main
+{
+    public static void main(String[]args)
+    {
+        Scanner sc = new Scanner(System.in);
+        Graph G = new Graph(4);
+        
+        G.addEdge(0, 1);
+        G.addEdge(0, 2);
+        G.addEdge(1, 2);
+        G.addEdge(2, 0);
+        G.addEdge(2, 3);
+        G.addEdge(3, 3);
+        
+        G.dfs(2);
     }
 }
