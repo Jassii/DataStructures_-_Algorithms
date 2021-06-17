@@ -43,7 +43,7 @@ class ActivitySelection
         {
             if(arr[j].start>=arr[i].finish)
             {
-                System.out.print(i+" ");
+                System.out.print(j+" ");
                 i=j;  //this has to be done..
             }
         }
