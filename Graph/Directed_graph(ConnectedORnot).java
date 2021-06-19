@@ -67,6 +67,8 @@ class Graph
     
     public void dfs(int start)
     {
+        
+        //one method is to use stack..
         Stack<Integer> stack = new Stack<>();  //stack created..
         stack.push(start);
         visited[start] = true;
@@ -82,6 +84,18 @@ class Graph
                     stack.push(child);
                     visited[child] = true;
                 }
+            }
+        }
+        
+        //another method is to use recursion..
+        
+        visited[start] = true;
+        List<Integer> children = graph.get(start);
+        for(Integer child:children)
+        {
+            if(!visited[child])
+            {
+                dfs(child);
             }
         }
     }
