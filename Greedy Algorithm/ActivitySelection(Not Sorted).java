@@ -10,7 +10,7 @@ class Activity
     }
 }
 
-class Compare
+class Comparee
 {
     static void compare(Activity arr[],int n)
     {
