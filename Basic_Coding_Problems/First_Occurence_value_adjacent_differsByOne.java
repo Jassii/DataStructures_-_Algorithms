@@ -5,7 +5,7 @@ public class Main
 	{
 	    int arr[] = {7,6,7,6,5,4};
 	    int val=4;
-	    //System.out.println(searchBruteForce(arr,val));
+	    System.out.println(searchBruteForce(arr,val));
 	    System.out.println(searchOptimized(arr,val));
 	    
 	}
