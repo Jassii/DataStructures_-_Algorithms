@@ -7,7 +7,7 @@ public class Main
 		int B[] = {9,1,7,2,4,2,1,2};
 		
 		Set<Integer> set = new HashSet<>();    
-		List<Integer> intersection = new ArrayList<>();  //intersection list.
+		Set<Integer> intersection = new HashSet<>();  //intersection set.
 		int i;
 		for(i=0;i<A.length;i++)
 		{
@@ -17,8 +17,7 @@ public class Main
 		{
 		    if(set.contains(B[i]))
 		    {
-		        intersection.add(B[i]);
-		        set.remove(B[i]);
+		        intersection.add(B[i]);  //this won't allow duplicate common elements..
 		    }
 		}
 		System.out.println(intersection);
