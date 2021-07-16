@@ -1,4 +1,4 @@
-// how to calculate the factorial of a number(recursion..)
+// how to calculate the factorial of a number(recursion)
 import java.util.*;
 class Main
 {
